@@ -16,10 +16,9 @@ namespace MvcStartApp.Middlewares
         /// Middleware-компонент должен иметь конструктор, принимающий RequestDelegate
         /// </summary>
         /// <param name="next"></param>
-        public LoggingMidleware(RequestDelegate next, IRequestRepository repo)
+        public LoggingMidleware(RequestDelegate next)
         {
             _next = next;
-            _repo = repo;
         }
 
         /// <summary>
