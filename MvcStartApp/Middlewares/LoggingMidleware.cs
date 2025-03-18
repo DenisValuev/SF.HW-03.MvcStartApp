@@ -10,7 +10,6 @@ namespace MvcStartApp.Middlewares
     public class LoggingMidleware
     {
         private readonly RequestDelegate _next;
-        private readonly IRequestRepository _repo;
 
         /// <summary>
         /// Middleware-компонент должен иметь конструктор, принимающий RequestDelegate
@@ -30,7 +29,14 @@ namespace MvcStartApp.Middlewares
         {
             //Для логирования данных о запросе используем свойство объекта Httpcontext
             Console.WriteLine($"[{DateTime.Now}]: New request to http://{context.Request.Host.Value + context.Request.Path}");
-            
+
+            string url = $"New request to http://{context.Request.Host.Value + context.Request.Path}{Environment.NewLine}";
+            DateTime dateTimeRequest = DateTime.Now;
+
+            //string logRequest = $"{url} {dateTimeRequest}";
+            context.Items["CurrentDateTime"] = dateTimeRequest;
+            context.Items["URL"] = url;
+
             //Передача запроса далее по конвейеру
             await _next.Invoke(context);
         }

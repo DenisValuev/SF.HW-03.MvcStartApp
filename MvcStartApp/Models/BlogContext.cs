@@ -22,7 +22,5 @@ namespace MvcStartApp.Models
         {
             Database.EnsureCreated();
         }
-
-
     }
 }
